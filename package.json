@@ -1,0 +1,19 @@
+{
+  "name": "memberd",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=/Memberd/",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0",
+    "glob": "^8.1.0"
+  },
+  "dependencies": {
+    "vite-plugin-full-reload": "^1.0.5",
+    "vite-plugin-html-inject": "^1.0.1"
+  }
+}

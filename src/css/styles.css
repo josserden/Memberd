@@ -1,0 +1,20 @@
+@import url('./utils/variables.css');
+@import url('./utils/reset.css');
+
+@import url('./common/common.css');
+
+@import url('./components/buttons.css');
+
+@import url('./sections/hero.css');
+@import url('./sections/showcase.css');
+
+body {
+  font-family: var(--main-font);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+
+  margin: 0;
+  min-height: 100vh;
+}
