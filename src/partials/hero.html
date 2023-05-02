@@ -10,10 +10,9 @@
           Memberd
         </a>
 
-        <button class="menu-btn" type="button" aria-label="Toggle Menu">
-          <svg class="icon-hamburger">
-            <use href="./img/icons/sprite.svg#icon-hamburger" />
-          </svg>
+        <button class="hamburger-btn" type="button" aria-label="Toggle Menu">
+          <span class="hamburger-item"></span>
+          <span class="hamburger-item"></span>
         </button>
 
         <nav class="main-nav">
@@ -54,11 +53,13 @@
         </p>
 
         <form class="hero-form" action="">
-          <input
-            class="hero-input"
-            type="text"
-            placeholder="Enter your email address"
-          />
+          <label>
+            <input
+              class="hero-input"
+              type="text"
+              placeholder="Enter your email address"
+            />
+          </label>
           <button class="hero-form-btn" type="submit">join</button>
         </form>
 
@@ -71,6 +72,7 @@
             title="Google Play"
           >
             <img
+              class="icon-google"
               src="./img/icons/google-play-button.svg"
               alt="google play logo"
             />
@@ -83,10 +85,15 @@
             rel="noopener noreferrer"
             title="App Store"
           >
-            <img src="./img/icons/app-store-button.svg" alt="app store logo" />
+            <img
+              class="icon-apple"
+              src="./img/icons/app-store-button.svg"
+              alt="app store logo"
+            />
           </a>
         </div>
       </div>
+
       <div class="hero-gallery"></div>
     </div>
   </div>

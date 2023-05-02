@@ -1,38 +1,56 @@
 /* Burger button */
-.burger-btn {
+.hamburger-btn {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap:10px;
+
   width: 40px;
-  height: 40px;
+  height: 20px;
   background-color: transparent;
-  border: none;
-  cursor: pointer;
+
 }
 
-.icon-hamburger {
-  width: 24px;
-  height: 24px;
+.hamburger-item {
+  width: 36px;
+  height: 2px;
+
+  background-color: var(--main-light-color);
+  transition: opacity var(--main-animation);
 }
+
+.hamburger-btn:hover .hamburger-item,
+.hamburger-btn:focus .hamburger-item{
+  opacity: var(--opacity-hover);
+}
+
 
 /* Google play and Apple Stope buttons */
 .store-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: opacity var(--main-animation);
 }
 
-.icon-store-btn {
+.store-btn:hover,
+.store-btn:focus {
+  opacity: var(--opacity-hover);
+}
+
+.icon-google {
+  width: 114px;
+  height: 40px;
+}
+
+.icon-apple {
   width: 100px;
   height: 40px;
-  background-color: transparent;
 }
 
 /* Hero form button */
 .hero-form-btn {
   width: 100%;
   max-width: 182px;
-  height: 50px;
+  min-height: 50px;
 
   padding: 0 14px;
   background-color: var(--accent-color);
@@ -42,6 +60,12 @@
   font-weight: 700;
 
   border-radius: 17px;
+  transition: opacity var(--main-animation);
+}
+
+.hero-form-btn:hover,
+.hero-form-btn:focus {
+  opacity: var(--opacity-hover);
 }
 
 /* Showcase arrow button */
@@ -55,14 +79,21 @@
 
   border-radius: 50%;
   background-color: transparent;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--slate-50);
 }
 
 .icon-arrow {
   width: 16px;
   height: 16px;
+
+  transition: opacity var(--main-animation);
 }
 
 .icon-arrow-left {
   transform: rotate(180deg);
+}
+
+.arrow-btn:hover .icon-arrow,
+.arrow-btn:focus .icon-arrow {
+  opacity: var(--opacity-hover);
 }
