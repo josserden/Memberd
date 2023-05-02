@@ -1,15 +1,15 @@
 /* Burger button */
-.hamburger-btn {
+.hamburger-btn,
+.hamburger-btn-close{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap:10px;
+  gap: 10px;
 
   width: 40px;
   height: 20px;
   background-color: transparent;
-
 }
 
 .hamburger-item {
@@ -21,7 +21,26 @@
 }
 
 .hamburger-btn:hover .hamburger-item,
-.hamburger-btn:focus .hamburger-item{
+.hamburger-btn:focus .hamburger-item {
+  opacity: var(--opacity-hover);
+}
+
+.hamburger-btn-close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+.hamburger-item-close {
+  width: 20px;
+  height: 2px;
+
+  background-color: var(--main-light-color);
+  transition: opacity var(--main-animation);
+}
+
+.hamburger-btn-close:hover .hamburger-item-close,
+.hamburger-btn-close:focus .hamburger-item-close {
   opacity: var(--opacity-hover);
 }
 
