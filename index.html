@@ -13,7 +13,7 @@
     />
     
     <script type="module" crossorigin src="/Memberd/assets/index-fac82e35.js"></script>
-    <link rel="stylesheet" href="/Memberd/assets/index-c64ea424.css">
+    <link rel="stylesheet" href="/Memberd/assets/index-e060a350.css">
   </head>
 
   <body>
@@ -30,10 +30,9 @@
           Memberd
         </a>
 
-        <button class="menu-btn" type="button" aria-label="Toggle Menu">
-          <svg class="icon-hamburger">
-            <use href="/Memberd/assets/sprite-d41e809f.svg#icon-hamburger" />
-          </svg>
+        <button class="hamburger-btn" type="button" aria-label="Toggle Menu">
+          <span class="hamburger-item"></span>
+          <span class="hamburger-item"></span>
         </button>
 
         <nav class="main-nav">
@@ -74,11 +73,13 @@
         </p>
 
         <form class="hero-form" action="">
-          <input
-            class="hero-input"
-            type="text"
-            placeholder="Enter your email address"
-          />
+          <label>
+            <input
+              class="hero-input"
+              type="text"
+              placeholder="Enter your email address"
+            />
+          </label>
           <button class="hero-form-btn" type="submit">join</button>
         </form>
 
@@ -91,6 +92,7 @@
             title="Google Play"
           >
             <img
+              class="icon-google"
               src="/Memberd/assets/google-play-button-f449070f.svg"
               alt="google play logo"
             />
@@ -103,10 +105,15 @@
             rel="noopener noreferrer"
             title="App Store"
           >
-            <img src="/Memberd/assets/app-store-button-07666d56.svg" alt="app store logo" />
+            <img
+              class="icon-apple"
+              src="/Memberd/assets/app-store-button-07666d56.svg"
+              alt="app store logo"
+            />
           </a>
         </div>
       </div>
+
       <div class="hero-gallery"></div>
     </div>
   </div>
@@ -114,7 +121,7 @@
 
 
     <!-- Showcase -->
-    <section class="section-color">
+    <section class="section section-color">
   <div class="container showcase-container">
     <div class="showcase-wrapper">
       <div class="showcase-content">
