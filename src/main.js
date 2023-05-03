@@ -1,6 +1,6 @@
 import { getVariables } from './js/variables.js';
 
-const { burgerBtnOpen, menuOverlay, burgerBtnClose, body } = getVariables();
+const { burgerBtnOpen, menuOverlay, body } = getVariables();
 
 const toggleMenu = () => {
   const isMenuOpen = burgerBtnOpen.getAttribute('aria-expanded') === 'true';
@@ -15,4 +15,3 @@ const toggleMenu = () => {
 };
 
 burgerBtnOpen.addEventListener('click', toggleMenu);
-burgerBtnClose.addEventListener('click', toggleMenu);
