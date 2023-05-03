@@ -1,23 +1,43 @@
 /* Burger button */
-.hamburger-btn,
-.hamburger-btn-close{
+.hamburger-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
 
-  width: 40px;
-  height: 20px;
+  width: 30px;
+  height: 16px;
   background-color: transparent;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: var(--z-index-100);
 }
 
 .hamburger-item {
-  width: 36px;
+  width: 100%;
   height: 2px;
 
   background-color: var(--main-light-color);
-  transition: opacity var(--main-animation);
+  transition: opacity var(--main-animation), transform var(--main-animation);
+}
+
+.hamburger-item:first-child {
+  transform-origin: top;
+}
+
+.hamburger-item:last-child {
+  transform-origin: bottom;
+}
+
+.hamburger-btn[aria-expanded='true'] .hamburger-item:first-child {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.hamburger-btn[aria-expanded='true'] .hamburger-item:last-child {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 .hamburger-btn:hover .hamburger-item,
@@ -25,27 +45,7 @@
   opacity: var(--opacity-hover);
 }
 
-.hamburger-btn-close {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-}
-
-.hamburger-item-close {
-  width: 20px;
-  height: 2px;
-
-  background-color: var(--main-light-color);
-  transition: opacity var(--main-animation);
-}
-
-.hamburger-btn-close:hover .hamburger-item-close,
-.hamburger-btn-close:focus .hamburger-item-close {
-  opacity: var(--opacity-hover);
-}
-
-
-/* Google play and Apple Stope buttons */
+/* Google play and Apple Store buttons */
 .store-btn {
   transition: opacity var(--main-animation);
 }
@@ -68,8 +68,8 @@
 /* Hero form button */
 .hero-form-btn {
   width: 100%;
-  max-width: 182px;
-  min-height: 50px;
+  max-width: 130px;
+  min-height: 48px;
 
   padding: 0 14px;
   background-color: var(--accent-color);
@@ -115,4 +115,24 @@
 .arrow-btn:hover .icon-arrow,
 .arrow-btn:focus .icon-arrow {
   opacity: var(--opacity-hover);
+}
+
+/* Media */
+@media screen and (min-width: 768px) {
+  .hamburger-btn,
+  .hamburger-btn-close {
+    width: 40px;
+    height: 20px;
+  }
+
+  .hero-form-btn {
+    width: 100%;
+    max-width: 182px;
+    min-height: 50px;
+
+    padding: 0 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
 }
