@@ -1,3 +1,10 @@
+.section-showcase{
+  background-image:  linear-gradient(180deg, rgba(0, 0, 0, 0.03) 9.31%, rgba(0, 0, 0, 0.8) 25.16%, #000000 45.92%),url('../../img/showcase/moto-freestyle.png');
+  background-repeat: no-repeat;
+  background-position: top 100px center;
+  background-size: contain;
+}
+
 .showcase-container {
   position: relative;
 }
