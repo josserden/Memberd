@@ -107,6 +107,7 @@
     flex-wrap: nowrap;
   }
 }
+
 @media screen and (min-width: 768px) {
   .header {
     margin-bottom: 60px;
@@ -142,11 +143,7 @@
   }
 
   .hero-input::placeholder {
-    font-family: var(--main-font);
-    font-weight: 700;
-    line-height: 1.5;
-    color: var(--main-light-color);
-    letter-spacing: 1px;
+    font-size: 16px;
   }
 }
 
