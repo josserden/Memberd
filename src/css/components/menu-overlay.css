@@ -44,7 +44,7 @@
 }
 
 .nav-item::before {
-  content: counter(menu-counter, decimal-leading-zero) ". ";
+  content: counter(menu-counter, decimal-leading-zero) '. ';
 
   color: var(--main-light-color);
   font-size: 24px;
@@ -79,4 +79,15 @@
 .nav-link:hover,
 .nav-link:focus {
   opacity: var(--opacity-hover);
+}
+
+/*Media*/
+@media screen and (min-width: 768px) {
+  .nav-item {
+    font-size: 36px;
+  }
+
+  .nav-menu {
+    gap: 36px;
+  }
 }
