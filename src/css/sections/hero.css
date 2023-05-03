@@ -9,6 +9,8 @@
 
   padding-top: 56px;
   padding-bottom: 56px;
+
+  overflow: hidden;
 }
 
 .header {
@@ -154,6 +156,7 @@
 
   .hero-wrapper {
     display: flex;
+    position: relative;
   }
 
   .hero-content {

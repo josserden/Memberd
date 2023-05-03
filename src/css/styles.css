@@ -8,6 +8,7 @@
 @import url('./sections/hero.css');
 @import url('./sections/showcase.css');
 @import url('./components/menu-overlay.css');
+@import url('./components/hero-gallery.css');
 
 body {
   font-family: var(--main-font);
