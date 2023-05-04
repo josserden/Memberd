@@ -59,6 +59,8 @@
   font-size: 48px;
   font-weight: 800;
   line-height: 1;
+  color: var(--main-light-color);
+
   margin-bottom: 30px;
 }
 
@@ -156,17 +158,17 @@
   }
 
   .site-heading {
-    background: linear-gradient(
-      to right,
-      rgb(255 255 255 / 100%) 40%,
-      rgb(255 255 255 / 50%) 100%
-    );
-    background-blend-mode: multiply;
-    background-clip: text;
+    /*background: linear-gradient(*/
+    /*  to right,*/
+    /*  rgb(255 255 255 / 100%) 40%,*/
+    /*  rgb(255 255 255 / 50%) 100%*/
+    /*);*/
+    /*background-blend-mode: multiply;*/
+    /*background-clip: text;*/
 
     font-size: 96px;
     line-height: 80px;
-    -webkit-text-fill-color: transparent;
+    /*-webkit-text-fill-color: transparent;*/
 
     /* mix-blend-mode: exclusion; */
   }
