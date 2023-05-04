@@ -18,12 +18,17 @@
 
   <body>
     <!-- Hero -->
-    <section class="section-color hero">
+    // This is the hero section of the page. // It includes the header, the main
+hero content, and the hero custom gallery. // There are includes partials
+components in src/partials/components - menu-overlay.html, and
+hero-gallery.html.
+
+<section class="section-color hero">
   <!-- Header -->
   <header class="header">
     <div class="container">
       <div class="navbar">
-        <a class="site-logo" href="/">
+        <a class="site-logo" href="/src/public">
           <svg class="site-logo-icon">
             <use href="/Memberd/assets/sprite-d41e809f.svg#icon-logo" />
           </svg>
@@ -38,7 +43,7 @@
           <span class="hamburger-item"></span>
           <span class="hamburger-item"></span>
         </button>
-
+        <!--Menu overlay partial component-->
         <div class="menu-overlay js-menu-overlay">
   <nav>
     <menu class="nav-menu">
@@ -119,7 +124,7 @@
           </a>
         </div>
       </div>
-
+      <!--Hero gallery partial component-->
       <div class="hero-gallery">
   <ul class="gallery-column">
     <li class="gallery-item"></li>
