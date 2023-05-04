@@ -28,8 +28,7 @@ const toggleMenu = () => {
 const goToSlide = index => {
   if (index < 0 || index > lastSlideIndex) return;
 
-  const scrollAmount =
-    carouselItems[index].offsetLeft - carouselItems[0].offsetLeft;
+  const scrollAmount = carouselItems[index].offsetLeft;
 
   carousel.scrollTo({
     left: scrollAmount,
