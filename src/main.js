@@ -28,7 +28,8 @@ const toggleMenu = () => {
 const goToSlide = index => {
   if (index < 0 || index > lastSlideIndex) return;
 
-  const scrollAmount = carouselItems[index].offsetLeft;
+  const scrollAmount =
+    carouselItems[index].offsetLeft - carouselItems[0].offsetLeft;
 
   carousel.scrollTo({
     left: scrollAmount,
@@ -37,8 +38,12 @@ const goToSlide = index => {
 };
 
 const handlePrevBtnClick = () => {
+  if (currentSlideIndex === 0) return;
+
   currentSlideIndex -= 1;
   goToSlide(currentSlideIndex);
+
+  console.log('currentSlideIndex', currentSlideIndex);
 };
 
 const handleNextBtnClick = () => {
@@ -46,7 +51,11 @@ const handleNextBtnClick = () => {
 
   currentSlideIndex += 1;
   goToSlide(currentSlideIndex + 1);
+
+  console.log('currentSlideIndex', currentSlideIndex);
 };
+
+console.log('currentSlideIndex', currentSlideIndex);
 
 burgerBtnOpen.addEventListener('click', toggleMenu);
 prevBtn.addEventListener('click', handlePrevBtnClick);
