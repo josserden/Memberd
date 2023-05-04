@@ -1,12 +1,13 @@
 @media screen and (width >= 1280px) {
   .hero-gallery {
-    display: flex;
-    gap: 45px;
     position: absolute;
-    right: 0;
-    top: -300px;
 
     z-index: 0;
+    top: -300px;
+    right: 0;
+
+    display: flex;
+    gap: 45px;
   }
 
   .gallery-column {
@@ -16,13 +17,13 @@
   }
 
   .gallery-item {
-    background-color: var(--gray-400);
-
-    border-radius: 32px;
+    width: 260px;
     height: 400px;
 
     opacity: 0.3;
-    width: 260px;
+
+    border-radius: 32px;
+    background-color: var(--gray-400);
   }
 
   .gallery-column:nth-child(2) {

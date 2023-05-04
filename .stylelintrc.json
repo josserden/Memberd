@@ -2,8 +2,6 @@
   "extends": ["stylelint-config-standard", "stylelint-order-config-standard"],
   "plugins": ["stylelint-order"],
   "rules": {
-    "order/properties-order": ["position", "top", "right", "bottom", "left"],
-    "order/properties-alphabetical-order": true,
     "no-descending-specificity": null
   }
 }

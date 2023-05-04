@@ -1,56 +1,60 @@
 .menu-overlay {
-  align-items: center;
-
-  background-color: rgb(0 0 0 / 85%);
+  position: fixed;
+  z-index: var(--z-index-10);
   bottom: 0;
-
-  display: flex;
-  height: 100%;
-  justify-content: center;
   left: 0;
 
-  opacity: 0;
-  padding: 20px;
-  position: fixed;
-
-  transition: all var(--main-animation);
+  display: flex;
   visibility: hidden;
+  align-items: center;
+  justify-content: center;
 
   width: 100vw;
-  z-index: var(--z-index-10);
+  height: 100%;
+  padding: 20px;
+
+  transition: all var(--main-animation);
+
+  opacity: 0;
+
+  background-color: rgb(0 0 0 / 85%);
 }
 
 .is-open {
-  opacity: 1;
-  overflow: auto;
   visibility: visible;
+  overflow: auto;
+
+  opacity: 1;
 }
 
 .nav-menu {
-  counter-reset: menu-counter;
   display: flex;
   flex-direction: column;
+
+  counter-reset: menu-counter;
   gap: 32px;
 }
 
 .nav-item {
-  color: var(--main-light-color);
   counter-increment: menu-counter;
+  transition: opacity var(--main-animation);
+  text-transform: uppercase;
+
+  color: var(--main-light-color);
 
   font-size: 30px;
   font-weight: 800;
-  text-transform: uppercase;
-  transition: opacity var(--main-animation);
 }
 
 .nav-item::before {
-  color: var(--main-light-color);
+  margin-right: 16px;
 
   content: counter(menu-counter, decimal-leading-zero) '. ';
 
+  color: var(--main-light-color);
+
   font-size: 24px;
   font-weight: 800;
-  margin-right: 16px;
 }
 
 .nav-link {
@@ -60,18 +64,19 @@
 }
 
 .nav-link::after {
-  background-color: var(--main-light-color);
-
-  content: '';
-
-  display: block;
-  height: 2px;
-  left: 0;
   position: absolute;
   top: 100%;
-  transition: width var(--main-animation);
+  left: 0;
+
+  display: block;
 
   width: 0;
+  height: 2px;
+
+  content: '';
+  transition: width var(--main-animation);
+
+  background-color: var(--main-light-color);
 }
 
 .nav-link:hover::after,
