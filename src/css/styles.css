@@ -1,10 +1,7 @@
 @import url('./utils/variables.css');
 @import url('./utils/reset.css');
-
 @import url('./common/common.css');
-
 @import url('./components/buttons.css');
-
 @import url('./sections/hero.css');
 @import url('./sections/showcase.css');
 @import url('./components/menu-overlay.css');
