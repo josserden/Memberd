@@ -2,6 +2,7 @@
   "extends": ["stylelint-config-standard", "stylelint-order-config-standard"],
   "plugins": ["stylelint-order"],
   "rules": {
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "color-function-notation": "modern"
   }
 }

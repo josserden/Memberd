@@ -2,15 +2,15 @@
 @import url('./utils/reset.css');
 @import url('./common/common.css');
 @import url('./components/buttons.css');
-@import url('./components/menu-overlay.css');
+@import url('./components/fullscreen-menu.css');
 @import url('./components/hero-gallery.css');
 @import url('./components/carousel.css');
+@import url('./components/showcase-card.css');
+@import url('./sections/header.css');
 @import url('./sections/hero.css');
 @import url('./sections/showcase.css');
 
 body {
-  min-height: 100vh;
-
   margin: 0;
 
   font-family: var(--main-font);

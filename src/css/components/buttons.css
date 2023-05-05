@@ -11,39 +11,54 @@
   justify-content: center;
 
   width: 30px;
-  height: 16px;
+  height: 14px;
 
   background-color: transparent;
   gap: 10px;
 }
 
-.hamburger-item {
+.hamburger-btn::before,
+.hamburger-btn::after {
+  position: absolute;
+  z-index: -1;
+
   width: 100%;
   height: 2px;
 
-  transition: opacity var(--main-animation), transform var(--main-animation);
+  content: '';
+
+  transition: transform var(--main-animation), opacity var(--main-animation);
+  pointer-events: all;
 
   background-color: var(--main-light-color);
 }
 
-.hamburger-item:first-child {
+.hamburger-btn::before {
+  top: 0;
+  left: 0;
+
   transform-origin: top;
 }
 
-.hamburger-item:last-child {
+.hamburger-btn::after {
+  bottom: 0;
+  left: 0;
+
   transform-origin: bottom;
 }
 
-.hamburger-btn[aria-expanded='true'] .hamburger-item:first-child {
+.hamburger-btn[aria-expanded='true']::before {
   transform: translateY(5px) rotate(45deg);
 }
 
-.hamburger-btn[aria-expanded='true'] .hamburger-item:last-child {
+.hamburger-btn[aria-expanded='true']::after {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-.hamburger-btn:hover .hamburger-item,
-.hamburger-btn:focus .hamburger-item {
+.hamburger-btn:hover::before,
+.hamburger-btn:focus::before,
+.hamburger-btn:hover::after,
+.hamburger-btn:focus::after {
   opacity: var(--opacity-hover);
 }
 
@@ -124,10 +139,8 @@
 
 /* Media */
 @media screen and (width >= 768px) {
-  .hamburger-btn,
-  .hamburger-btn-close {
-    width: 40px;
-    height: 20px;
+  .hamburger-btn {
+    width: 36px;
   }
 
   .hero-form-btn {

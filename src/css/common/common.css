@@ -48,13 +48,13 @@
 
 /* Media */
 @media screen and (width >= 768px) {
-  .container {
-    max-width: 768px;
+  .section {
+    padding-top: 65px;
+    padding-bottom: 87px;
   }
 
-  .section {
-    padding-top: 209px;
-    padding-bottom: 87px;
+  .container {
+    max-width: 768px;
   }
 
   .description {

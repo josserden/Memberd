@@ -7,64 +7,31 @@
       </div>
 
       <div class="btn-wrapper">
-        <button class="arrow-btn js-btn-prev">
-          <svg class="icon-arrow icon-arrow-left">
-            <use href="./img/icons/sprite.svg#icon-arrow" />
-          </svg>
+        <button
+          class="arrow-btn"
+          aria-label="to previous slide"
+          data-prev-button
+        >
+          <img
+            class="icon-arrow icon-arrow-left"
+            src="./img/icons/icon-arrow.svg"
+            alt="arrow left icon"
+            loading="lazy"
+          />
         </button>
 
-        <button class="arrow-btn js-btn-next">
-          <svg class="icon-arrow">
-            <use href="./img/icons/sprite.svg#icon-arrow" />
-          </svg>
+        <button class="arrow-btn" aria-label="to next slide" data-next-button>
+          <img
+            class="icon-arrow"
+            src="./img/icons/icon-arrow.svg"
+            alt="icon right icon"
+            loading="lazy"
+          />
         </button>
       </div>
     </div>
 
-    <ul class="carousel js-carousel">
-      <li class="carousel-item js-carousel-item">
-        <div class="card-image">
-          <img src="./img/carousel/1.jpeg" alt="photo of RICKY GERVAIS" />
-        </div>
-
-        <div class="card-thumb">
-          <p class="card-description">COMEDIAN</p>
-          <h3 class="card-title">RICKY GERVAIS</h3>
-        </div>
-      </li>
-
-      <li class="carousel-item js-carousel-item">
-        <div class="card-image">
-          <img src="./img/carousel/2.jpeg" alt="photo of SERENA WILLIAMS" />
-        </div>
-
-        <div class="card-thumb">
-          <p class="card-description">TENNIS PLAYER</p>
-          <h3 class="card-title">SERENA WILLIAMS</h3>
-        </div>
-      </li>
-
-      <li class="carousel-item js-carousel-item">
-        <div class="card-image">
-          <img src="./img/carousel/3.jpeg" alt="photo RICHARD BRANSON" />
-        </div>
-
-        <div class="card-thumb">
-          <p class="card-description">Entrepreneur</p>
-          <h3 class="card-title">RICHARD BRANSON</h3>
-        </div>
-      </li>
-
-      <li class="carousel-item js-carousel-item">
-        <div class="card-image">
-          <img src="./img/carousel/3.jpeg" alt="photo RICHARD BRANSON" />
-        </div>
-
-        <div class="card-thumb">
-          <p class="card-description">INFLUENCER</p>
-          <h3 class="card-title">Theodora Moutinho</h3>
-        </div>
-      </li>
-    </ul>
+    <!--    Carousel partial component-->
+    <load src="partials/components/carousel.html" />
   </div>
 </section>

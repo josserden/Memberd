@@ -1,3 +1,9 @@
+.hero-gallery {
+  position: relative;
+
+  display: none;
+}
+
 @media screen and (width >= 1280px) {
   .hero-gallery {
     position: absolute;
@@ -17,16 +23,36 @@
   }
 
   .gallery-item {
+    position: relative;
+
     width: 260px;
     height: 400px;
 
-    opacity: 0.3;
-
     border-radius: 32px;
-    background-color: var(--gray-400);
+    background-color: var(--main-dark-color);
+  }
+
+  .gallery-item img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    object-fit: cover;
+  }
+
+  .gallery-item-row-1 {
+    height: 424px;
+  }
+
+  .gallery-item-row-1:nth-child(2) {
+    opacity: 0.3;
+  }
+
+  .gallery-column:nth-child(1) {
+    transform: translateY(-294px);
   }
 
   .gallery-column:nth-child(2) {
-    transform: translateY(-40%);
+    transform: translateY(-18px);
   }
 }
