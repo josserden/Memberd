@@ -12,11 +12,11 @@
 
 .carousel {
   display: flex;
+
+  overflow-x: scroll;
   align-items: center;
 
   margin-right: -24px;
-
-  overflow-x: scroll;
   scroll-snap-type: x mandatory;
 }
 
