@@ -19,7 +19,7 @@
   content: '';
   pointer-events: all;
 
-  opacity: .35;
+  opacity: 0.35;
 
   background: linear-gradient(
     180deg,
