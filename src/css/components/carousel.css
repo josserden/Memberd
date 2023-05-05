@@ -1,13 +1,22 @@
-.carousel {
-  display: flex;
+.carousel-wrapper {
+  position: relative;
 
-  overflow-x: scroll;
-  align-items: center;
+  overflow: hidden;
 
   width: 100%;
+  max-width: 1280px;
   height: 100%;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
+
+  margin: 0 auto;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+
+  margin-right: -24px;
+
+  cursor: pointer;
 }
 
 .carousel-item {
@@ -15,6 +24,24 @@
 
   flex-shrink: 0;
 
+  width: calc(100% / 1.25);
+
   margin-right: 24px;
-  scroll-snap-align: start;
+}
+
+.carousel-item-drugging {
+  cursor: grabbing;
+}
+
+/* Media */
+@media screen and (width >= 768px) {
+  .carousel-item {
+    width: calc(100% / 2.25);
+  }
+}
+
+@media screen and (width >= 1024px) {
+  .carousel-item {
+    width: calc(100% / 3.25);
+  }
 }
