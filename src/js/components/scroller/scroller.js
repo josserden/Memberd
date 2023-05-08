@@ -5,36 +5,46 @@ export class Scroller extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.columns = this.getAttribute('cols') || 1;
+    this.counts = this.getAttribute('counts')?.split(',') || [];
     this.galleryHeight = 0;
     this.cloneHeight = 0;
     this.clonesPerColumn = 0;
   }
 
   static get observedAttributes() {
-    return ['cols'];
+    return ['cols', 'counts'];
   }
 
   connectedCallback() {
     const style = document.createElement('style');
+    const galleryItems = [];
+
     style.textContent = scrollerStyles;
     this.shadowRoot.appendChild(style);
 
-    for (let i = 0; i < this.columns; i += 1) {
+    this.counts.forEach(count => {
+      const normalizedCount = Number(count);
+      const galleryItemsInColumn = [];
+
+      for (let i = 1; i <= normalizedCount; i += 1) {
+        const galleryItem = `
+          <li class="gallery-item gallery-item-row-1">
+            <img src="./img/hero/gallery/row-1/${i}.webp" alt="image of gallery" width="260" height="424" loading="lazy"/>
+          </li>
+        `;
+
+        galleryItemsInColumn.push(galleryItem);
+      }
+      galleryItems.push(galleryItemsInColumn);
+    });
+
+    galleryItems.forEach(galleryItem => {
       const column = document.createElement('ul');
       column.classList.add('gallery-column');
-      column.innerHTML = `
-            <li class='gallery-item gallery-item-row-1'>
-              <img
-                src='./img/hero/gallery/row-1/${i + 1}.webp'
-                alt='image of gallery'
-                width='260'
-                height='424'
-                loading='lazy'
-              />
-            </li>
-      `;
+      column.innerHTML = galleryItem.join('');
+
       this.shadowRoot.appendChild(column);
-    }
+    });
 
     const columns = this.shadowRoot.querySelectorAll('.gallery-column');
     this.cloneHeight = columns[0].querySelector('.gallery-item').offsetHeight;
@@ -42,6 +52,7 @@ export class Scroller extends HTMLElement {
     this.clonesPerColumn = Math.ceil(this.galleryHeight / this.cloneHeight) + 1;
 
     columns.forEach(column => {
+      console.log(column);
       for (let i = 0; i < this.clonesPerColumn; i += 1) {
         const clone = column.querySelector('.gallery-item').cloneNode(true);
         clone.classList.add('clone');
