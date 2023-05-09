@@ -7,7 +7,28 @@ export class Scroller extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.columns = parseInt(this.getAttribute('cols')) || 1;
     this.startOffset = parseInt(this.getAttribute('start-offset')) || 0;
-    this.counts = this.getAttribute('counts')?.split(',') || [];
+
+    const counts = this.getAttribute('counts')?.split(',') || [];
+    this.galleryItems = counts.map(count => {
+      const normalizedCount = Number(count);
+      const galleryItemsInColumn = [];
+
+      for (let i = 1; i <= normalizedCount; i += 1) {
+        const galleryItem = `
+        <li class="gallery-item gallery-item-row-1">
+          <img src="./img/hero/gallery/row-1/${i}.webp" alt="image of gallery" width="260" height="424" loading="lazy"/>
+        </li>
+      `;
+
+        galleryItemsInColumn.push(galleryItem);
+      }
+
+      return {
+        count: normalizedCount,
+        items: galleryItemsInColumn.join(''),
+      };
+    });
+
     this.galleryHeight = 0;
     this.cloneHeight = 0;
     this.clonesPerColumn = 0;
@@ -19,44 +40,27 @@ export class Scroller extends HTMLElement {
 
   connectedCallback() {
     const style = document.createElement('style');
-    const galleryItems = [];
-    let offset = this.startOffset;
-
     style.textContent = scrollerStyles;
     this.shadowRoot.appendChild(style);
 
-    this.counts.forEach(count => {
-      const normalizedCount = Number(count);
-      const galleryItemsInColumn = [];
-
-      for (let i = 1; i <= normalizedCount; i += 1) {
-        const galleryItem = `
-          <li class="gallery-item gallery-item-row-1">
-            <img src="./img/hero/gallery/row-1/${i}.webp" alt="image of gallery" width="260" height="424" loading="lazy"/>
-          </li>
-        `;
-
-        galleryItemsInColumn.push(galleryItem);
-      }
-      galleryItems.push(galleryItemsInColumn);
-    });
+    let offset = this.startOffset;
+    const columns = [];
 
     for (let i = 0; i < this.columns; i++) {
       const column = document.createElement('ul');
       column.classList.add('gallery-column');
       column.style.transform = `translateY(${offset}px)`;
 
-      const galleryItemsInColumn = galleryItems.map(galleryItemsInRow => {
-        return galleryItemsInRow[i] || '';
-      });
+      const galleryItemsInColumn = this.galleryItems[i]?.items || '';
+      column.innerHTML = galleryItemsInColumn;
 
-      column.innerHTML = galleryItemsInColumn.join('');
+      console.log(galleryItemsInColumn);
 
       this.shadowRoot.appendChild(column);
+      columns.push(column);
       offset += Math.floor(Math.random() * 100 - 50);
     }
 
-    const columns = this.shadowRoot.querySelectorAll('.gallery-column');
     this.cloneHeight =
       columns[0]?.querySelector('.gallery-item')?.offsetHeight || 0;
     this.galleryHeight = this.offsetHeight;
