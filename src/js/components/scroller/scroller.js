@@ -3,8 +3,9 @@ import { scrollerStyles } from './scroller.styles.js';
 export class Scroller extends HTMLElement {
   constructor() {
     super();
+
     this.attachShadow({ mode: 'open' });
-    this.columns = this.getAttribute('cols') || 1;
+    this.columns = parseInt(this.getAttribute('cols')) || 1;
     this.counts = this.getAttribute('counts')?.split(',') || [];
     this.galleryHeight = 0;
     this.cloneHeight = 0;
@@ -38,23 +39,32 @@ export class Scroller extends HTMLElement {
       galleryItems.push(galleryItemsInColumn);
     });
 
-    galleryItems.forEach(galleryItem => {
+    for (let i = 0; i < this.columns; i++) {
       const column = document.createElement('ul');
       column.classList.add('gallery-column');
-      column.innerHTML = galleryItem.join('');
+
+      const galleryItemsInColumn = galleryItems.map(galleryItemsInRow => {
+        return galleryItemsInRow[i] || '';
+      });
+
+      column.innerHTML = galleryItemsInColumn.join('');
 
       this.shadowRoot.appendChild(column);
-    });
+    }
 
     const columns = this.shadowRoot.querySelectorAll('.gallery-column');
-    this.cloneHeight = columns[0].querySelector('.gallery-item').offsetHeight;
+    this.cloneHeight =
+      columns[0]?.querySelector('.gallery-item')?.offsetHeight || 0;
     this.galleryHeight = this.offsetHeight;
     this.clonesPerColumn = Math.ceil(this.galleryHeight / this.cloneHeight) + 1;
 
     columns.forEach(column => {
-      console.log(column);
       for (let i = 0; i < this.clonesPerColumn; i += 1) {
-        const clone = column.querySelector('.gallery-item').cloneNode(true);
+        const galleryItem = column.querySelector('.gallery-item');
+
+        if (!galleryItem) continue;
+
+        const clone = galleryItem.cloneNode(true);
         clone.classList.add('clone');
         column.appendChild(clone);
       }

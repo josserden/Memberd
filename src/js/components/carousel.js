@@ -1,4 +1,4 @@
-import { getVariables } from '../variables.js';
+import { getVariables } from '../utils/variables.js';
 
 const { carousel, carouselItems } = getVariables();
 

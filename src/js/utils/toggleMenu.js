@@ -1,4 +1,4 @@
-import { getVariables } from '../variables.js';
+import { getVariables } from './variables.js';
 
 const { burgerBtn, menu, body } = getVariables();
 
