@@ -1,17 +1,21 @@
-.hero-gallery {
+.hero-scroller {
   position: relative;
+}
 
+.hero-gallery{
   display: none;
 }
 
 @media screen and (width >= 1280px) {
-  .hero-gallery {
+  .hero-scroller {
     position: absolute;
 
     z-index: 0;
     top: -300px;
     right: 0;
+  }
 
+  .hero-gallery {
     display: flex;
     gap: 45px;
   }
