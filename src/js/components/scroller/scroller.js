@@ -6,6 +6,7 @@ export class Scroller extends HTMLElement {
 
     this.attachShadow({ mode: 'open' });
     this.columns = parseInt(this.getAttribute('cols')) || 1;
+    this.startOffset = parseInt(this.getAttribute('start-offset')) || 0;
     this.counts = this.getAttribute('counts')?.split(',') || [];
     this.galleryHeight = 0;
     this.cloneHeight = 0;
@@ -13,12 +14,13 @@ export class Scroller extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['cols', 'counts'];
+    return ['cols', 'counts', 'start-offset'];
   }
 
   connectedCallback() {
     const style = document.createElement('style');
     const galleryItems = [];
+    let offset = this.startOffset;
 
     style.textContent = scrollerStyles;
     this.shadowRoot.appendChild(style);
@@ -42,6 +44,7 @@ export class Scroller extends HTMLElement {
     for (let i = 0; i < this.columns; i++) {
       const column = document.createElement('ul');
       column.classList.add('gallery-column');
+      column.style.transform = `translateY(${offset}px)`;
 
       const galleryItemsInColumn = galleryItems.map(galleryItemsInRow => {
         return galleryItemsInRow[i] || '';
@@ -50,6 +53,7 @@ export class Scroller extends HTMLElement {
       column.innerHTML = galleryItemsInColumn.join('');
 
       this.shadowRoot.appendChild(column);
+      offset += Math.floor(Math.random() * 100 - 50);
     }
 
     const columns = this.shadowRoot.querySelectorAll('.gallery-column');
