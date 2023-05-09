@@ -32,6 +32,10 @@ export class Scroller extends HTMLElement {
     this.galleryHeight = 0;
     this.cloneHeight = 0;
     this.clonesPerColumn = 0;
+
+    this.baseSizeInPx = 50;
+    this.baseTimeInMs = 1000;
+    this.speed = this.baseSizeInPx / this.baseTimeInMs;
   }
 
   static get observedAttributes() {
@@ -39,6 +43,8 @@ export class Scroller extends HTMLElement {
   }
 
   connectedCallback() {
+    if (!this.shadowRoot.isConnected) return;
+
     const style = document.createElement('style');
     style.textContent = scrollerStyles;
     this.shadowRoot.appendChild(style);
@@ -54,10 +60,9 @@ export class Scroller extends HTMLElement {
       const galleryItemsInColumn = this.galleryItems[i]?.items || '';
       column.innerHTML = galleryItemsInColumn;
 
-      console.log(galleryItemsInColumn);
-
       this.shadowRoot.appendChild(column);
       columns.push(column);
+
       offset += Math.floor(Math.random() * 100 - 50);
     }
 
@@ -83,32 +88,16 @@ export class Scroller extends HTMLElement {
 
   animate() {
     const columns = this.shadowRoot.querySelectorAll('.gallery-column');
-    const baseSizeInPx = 250;
-    const baseTimeInMs = 1000;
-    const speed = baseSizeInPx / baseTimeInMs;
-    const timeWithFrameRate = 16;
-    let startTime = null;
+    const startTime = performance.now();
     let newPosition = 0;
 
     const start = () => {
-      const timestamp = Date.now();
-
-      if (!startTime) startTime = timestamp;
-
-      const elapsed = timestamp - startTime;
+      const timestamp = performance.now();
+      const elapsedTime = timestamp - startTime;
+      newPosition = this.speed * elapsedTime;
 
       columns.forEach(column => {
-        const currentPosition = column.offsetTop;
-        newPosition = Math.round((speed * elapsed) / timeWithFrameRate);
-        const isEnd = currentPosition + newPosition >= this.galleryHeight;
-
-        if (isEnd) {
-          column.style.transform = `translateY(0px)`;
-          startTime = null;
-          return;
-        }
-
-        column.style.transform = `translateY(${-newPosition}px)`;
+        column.style.transform = `translateY(${newPosition}px)`;
       });
 
       requestAnimationFrame(start);
@@ -117,3 +106,17 @@ export class Scroller extends HTMLElement {
     requestAnimationFrame(start);
   }
 }
+//redraw
+//resize Observer - слудікування за зміною розміру елемента слідкує за всім деревом
+//intersection Observer - спостерігає за тим чи елемент в зоні видимості і виконує певні дії або поуза
+//manual pause
+//додати метод play та pause
+//при ресайзі рахувати клони - відокремити оригінал від клонів. мати два масиви
+//mutation observer - спостерігає за зміною дерева але треба шоб не реагував на мої зміни  слідкує за оригіналом
+
+//сцена
+//камера
+//інтерфейс
+
+//обєкт
+//світло
