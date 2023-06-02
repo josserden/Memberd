@@ -59,26 +59,19 @@ export class Scroller extends HTMLElement {
   }
 
   updateItems() {
-    // create a recursive function to update the items
-
-    // if the position is less than the height of the first item
-    if (this.position < this.originalItems[0].offsetHeight) {
-      // return the first item
-      return;
-    }
+    // if the position is less than the height of the first item return the first item
+    if (this.position < this.originalItems[0].offsetHeight) return;
 
     // otherwise, remove the first item
     this.removeChild(this.originalItems[0]);
 
     // and add it to the end of the list
-
     this.appendChild(this.originalItems[0]);
 
     // then update the position by subtracting the height of the first item
     this.position -= this.originalItems[0].offsetHeight;
 
     // then call the function again
-
     this.updateItems();
   }
 
