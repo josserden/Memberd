@@ -6,6 +6,8 @@
 
   padding-top: 56px;
   padding-bottom: 22px;
+
+  pointer-events: none;
 }
 
 .header::before {
@@ -17,7 +19,6 @@
   height: 100%;
 
   content: '';
-  pointer-events: all;
 
   opacity: 0.35;
 
@@ -39,6 +40,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  pointer-events: all;
+
 }
 
 .site-logo {
