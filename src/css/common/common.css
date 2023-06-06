@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+
+  font-family: var(--main-font);
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.2;
+}
+
+
 .no-scroll {
   overflow: hidden;
 }
@@ -14,12 +25,12 @@
   padding-top: 40px;
   padding-bottom: 40px;
 
-  background-color: var(--main-light-color);
+  background-color: var(--secondary-color);
 }
 
 .section-color {
-  color: var(--main-light-color);
-  background-color: var(--main-dark-color);
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
 }
 
 .section-title {

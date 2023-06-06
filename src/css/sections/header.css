@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  z-index: var(--z-index-100);
+  z-index: var(--z-index-hight);
 
   width: 100%;
 
@@ -34,7 +34,7 @@
 
 .navbar {
   position: relative;
-  z-index: var(--z-index-100);
+  z-index: var(--z-index-hight);
 
   display: flex;
   align-items: center;

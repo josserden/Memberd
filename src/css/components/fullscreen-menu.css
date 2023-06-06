@@ -1,6 +1,6 @@
 .menu-overlay {
   position: fixed;
-  z-index: var(--z-index-10);
+  z-index: var(--z-index-low);
   bottom: 0;
   left: 0;
 
@@ -40,7 +40,7 @@
   transition: opacity var(--main-animation);
   text-transform: uppercase;
 
-  color: var(--main-light-color);
+  color: var(--secondary-color);
 
   font-size: 30px;
   font-weight: 800;
@@ -51,7 +51,7 @@
 
   content: counter(menu-counter, decimal-leading-zero) '. ';
 
-  color: var(--main-light-color);
+  color: var(--secondary-color);
 
   font-size: 24px;
   font-weight: 800;
@@ -76,7 +76,7 @@
   content: '';
   transition: width var(--main-animation);
 
-  background-color: var(--main-light-color);
+  background-color: var(--secondary-color);
 }
 
 .nav-link:hover::after,

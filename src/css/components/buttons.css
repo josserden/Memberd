@@ -1,7 +1,7 @@
 /* Burger button */
 .hamburger-btn {
   position: absolute;
-  z-index: var(--z-index-100);
+  z-index: var(--z-index-hight);
   top: 0;
   right: 0;
 
@@ -30,7 +30,7 @@
   transition: transform var(--main-animation), opacity var(--main-animation);
   pointer-events: all;
 
-  background-color: var(--main-light-color);
+  background-color: var(--secondary-color);
 }
 
 .hamburger-btn::before {
@@ -115,7 +115,7 @@
   width: 40px;
   height: 40px;
 
-  border: 1px solid var(--slate-50);
+  border: 1px solid var(--secondary-color-alfa-20);
 
   border-radius: 50%;
   background-color: transparent;

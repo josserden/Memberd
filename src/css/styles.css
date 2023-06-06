@@ -10,12 +10,3 @@
 @import url('./sections/hero.css');
 @import url('./sections/showcase.css');
 
-body {
-  margin: 0;
-
-  font-family: var(--main-font);
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.2;
-}
