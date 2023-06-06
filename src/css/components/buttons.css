@@ -96,12 +96,12 @@
   letter-spacing: 2px;
   text-transform: uppercase;
 
+  pointer-events: auto;
+
   border-radius: 17px;
   background-color: var(--accent-color);
 
   font-weight: 700;
-
-  pointer-events: auto;
 }
 
 .hero-form-btn:hover,
