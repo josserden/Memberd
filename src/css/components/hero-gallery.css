@@ -6,6 +6,11 @@
   right: 0;
 }
 
+.hero-scroller:nth-child(2){
+  top: -100px;
+  right: 300px;
+}
+
 .hero-gallery {
   display: flex;
   gap: 45px;

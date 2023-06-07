@@ -27,6 +27,7 @@ export const nextSlide = () => {
   if (currentSlideIndex === lastSlideIndex) {
     currentSlideIndex = 0;
     goToSlide(currentSlideIndex);
+
     return;
   }
 

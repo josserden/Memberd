@@ -1,38 +1,25 @@
-export class Scroller extends HTMLElement {
+const BASE_SIZE_IN_PX = 100;
+const BASE_TIME_IN_MS = 1000;
+const INITIAL_POSITION = 0;
+
+class Scroller extends HTMLElement {
   constructor() {
     super();
-    this.originalItems = [...this.children];
-    this.clonedItems = this.originalItems.map(item => {
-      const clone = item.cloneNode(true);
-      clone.classList.add('cloned');
-      return clone;
-    });
-    // Base variables for speed and position
-    this.baseSizeInPx = 100;
-    this.baseTimeInMs = 1000;
+
+    this.originalItems = [];
+    this.clonedItems = [];
     this.speedValue =
-      parseInt(this.getAttribute('speed-value')) || this.baseSizeInPx;
-    this.speed = this.speedValue / this.baseTimeInMs;
-    this.position = 0;
+      parseInt(this.getAttribute('speed-value')) || BASE_SIZE_IN_PX;
+    this.speed = this.speedValue / BASE_TIME_IN_MS;
+    this.position = INITIAL_POSITION;
     // Time variables for animation
     this.startTime = performance.now();
     this.pauseTime = null;
     this.isPlay = false;
-    // Observers options
-    this.intersectionOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    };
     // Observers
-    this.resizeObserver = new ResizeObserver(this.handleResize.bind(this));
-    this.observer = new IntersectionObserver(
-      this.handleIntersection.bind(this),
-      this.intersectionOptions
-    );
-    this.mutationObserver = new MutationObserver(
-      this.handleMutation.bind(this)
-    );
+    this.initObservers();
+    // Items
+    this.initItems();
   }
 
   static get observedAttributes() {
@@ -44,21 +31,63 @@ export class Scroller extends HTMLElement {
 
     this.generateItems();
     this.startAnimation();
-    this.addEventListener('mouseenter', this.pauseAnimation.bind(this));
-    this.addEventListener('mouseleave', this.resumeAnimation.bind(this));
+
+    this.addEventListener('mouseenter', () => {
+      this.pauseAnimation();
+    });
+    this.addEventListener('mouseleave', () => {
+      this.resumeAnimation();
+    });
+
+    this.connectObservers();
+  }
+
+  disconnectedCallback() {
+    this.disconnectObservers();
+  }
+
+  initObservers = () => {
+    this.observer = new IntersectionObserver(this.handleIntersection, {
+      root: null,
+      rootMargin: '0px',
+      threshold: INITIAL_POSITION,
+    });
+
+    this.resizeObserver = new ResizeObserver(this.handleResize);
+    // this.mutationObserver = new MutationObserver(this.handleMutation);
+  };
+
+  connectObservers = () => {
     this.resizeObserver.observe(this);
     this.observer.observe(this.parentElement);
-    this.mutationObserver.observe(this, {
-      childList: true,
-    });
-  }
+    // this.mutationObserver.observe(this, {
+    //   childList: true,
+    // });
+  };
 
-  generateItems() {
+  disconnectObservers = () => {
+    this.resizeObserver.disconnect();
+    this.observer.disconnect();
+    // this.mutationObserver.disconnect();
+  };
+
+  initItems = () => {
+    this.originalItems = [...this.children];
+
+    // this.clonedItems = this.originalItems.map(item => {
+    //   const clone = item.cloneNode(true);
+    //   clone.classList.add('cloned');
+    //
+    //   return clone;
+    // });
+  };
+
+  generateItems = () => {
     this.updateItems();
     this.append(...this.clonedItems);
-  }
+  };
 
-  updateItems() {
+  updateItems = () => {
     // if the position is less than the height of the first item return the first item
     if (this.position < this.originalItems[0].offsetHeight) return;
 
@@ -73,15 +102,9 @@ export class Scroller extends HTMLElement {
 
     // then call the function again
     this.updateItems();
-  }
+  };
 
-  disconnectedCallback() {
-    this.resizeObserver.disconnect();
-    this.observer.disconnect();
-    // this.mutationObserver.disconnect();
-  }
-
-  startAnimation() {
+  startAnimation = () => {
     console.log('startAnimation');
 
     this.isPlay = true;
@@ -102,27 +125,27 @@ export class Scroller extends HTMLElement {
     };
 
     requestAnimationFrame(init);
-  }
+  };
 
-  pauseAnimation() {
+  pauseAnimation = () => {
     console.log('pauseAnimation');
     this.isPlay = false;
     this.pauseTime = performance.now();
+    //   create slow down effect
+  };
 
-    this.mutationObserver.disconnect();
-  }
-
-  resumeAnimation() {
+  resumeAnimation = () => {
     console.log('resumeAnimation');
     if (this.isPlay) return;
 
     this.isPlay = true;
     this.startTime += this.pauseTime ? performance.now() - this.pauseTime : 0;
     this.pauseTime = null;
-    requestAnimationFrame(this.startAnimation.bind(this));
-  }
 
-  handleResize(entries) {
+    requestAnimationFrame(this.startAnimation);
+  };
+
+  handleResize = entries => {
     for (const entry of entries) {
       const { width, height } = entry.contentRect;
       const { width: prevWidth, height: prevHeight } =
@@ -135,23 +158,26 @@ export class Scroller extends HTMLElement {
         this.resumeAnimation();
       }
     }
-  }
+  };
 
-  handleIntersection(entries) {
+  handleIntersection = entries => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
         this.resumeAnimation();
         console.log('handleIntersection');
+
         return;
       }
 
       this.pauseAnimation();
     }
-  }
+  };
 
-  handleMutation(mutations) {
+  handleMutation = mutations => {
     console.log('handleMutation');
-    this.pauseAnimation();
-    this.resumeAnimation();
-  }
+  };
 }
+
+export const initScroller = () => {
+  customElements.define('custom-scroller', Scroller);
+};
