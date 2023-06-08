@@ -1,17 +1,18 @@
-const BASE_SIZE_IN_PX = 100;
-const BASE_TIME_IN_MS = 1000;
-const INITIAL_POSITION = 0;
-
 class Scroller extends HTMLElement {
+  #BASE_SIZE_IN_PX = 100;
+  #BASE_TIME_IN_MS = 1000;
+  #INITIAL_POSITION = 0;
+
   constructor() {
     super();
 
     this.originalItems = [];
     this.clonedItems = [];
+    this.parentHeight = 0;
     this.speedValue =
-      parseInt(this.getAttribute('speed-value')) || BASE_SIZE_IN_PX;
-    this.speed = this.speedValue / BASE_TIME_IN_MS;
-    this.position = INITIAL_POSITION;
+      parseInt(this.getAttribute('speed-value')) || this.#BASE_SIZE_IN_PX;
+    this.speed = this.speedValue / this.#BASE_TIME_IN_MS;
+    this.position = this.#INITIAL_POSITION;
     // Time variables for animation
     this.startTime = performance.now();
     this.pauseTime = null;
@@ -50,7 +51,7 @@ class Scroller extends HTMLElement {
     this.observer = new IntersectionObserver(this.handleIntersection, {
       root: null,
       rootMargin: '0px',
-      threshold: INITIAL_POSITION,
+      threshold: this.#INITIAL_POSITION,
     });
 
     this.resizeObserver = new ResizeObserver(this.handleResize);
@@ -72,33 +73,32 @@ class Scroller extends HTMLElement {
   };
 
   initItems = () => {
-    this.originalItems = [...this.children];
+    const parent = this.children[0];
+    this.parentHeight = parent.offsetHeight;
+    const childHeight = parent.children[0].offsetHeight;
+    const childCloneCount = Math.ceil(this.parentHeight / childHeight);
 
-    // this.clonedItems = this.originalItems.map(item => {
-    //   const clone = item.cloneNode(true);
-    //   clone.classList.add('cloned');
-    //
-    //   return clone;
-    // });
+    for (let i = 0; i < childCloneCount; i++) {
+      const item = parent.children[i] ?? parent.children[0];
+      const clone = item.cloneNode(true);
+
+      clone.classList.add('cloned');
+      this.clonedItems.push(clone);
+    }
   };
 
   generateItems = () => {
-    this.updateItems();
-    this.append(...this.clonedItems);
+    // this.updateItems();
+    this.children[0].append(...this.clonedItems);
   };
 
   updateItems = () => {
     // if the position is less than the height of the first item return the first item
-    if (this.position < this.originalItems[0].offsetHeight) return;
+    if (this.position < this.parentHeight) return;
 
-    // otherwise, remove the first item
-    this.removeChild(this.originalItems[0]);
-
-    // and add it to the end of the list
-    this.appendChild(this.originalItems[0]);
-
-    // then update the position by subtracting the height of the first item
-    this.position -= this.originalItems[0].offsetHeight;
+    // if the position is greater than the height of the original items
+    this.position -= this.parentHeight;
+    this.clonedItems.push(this.clonedItems.shift());
 
     // then call the function again
     this.updateItems();
@@ -129,9 +129,9 @@ class Scroller extends HTMLElement {
 
   pauseAnimation = () => {
     console.log('pauseAnimation');
+
     this.isPlay = false;
     this.pauseTime = performance.now();
-    //   create slow down effect
   };
 
   resumeAnimation = () => {

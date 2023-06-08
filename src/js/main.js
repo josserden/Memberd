@@ -1,6 +1,6 @@
 import * as Carousel from './components/carousel.js';
 import { getVariables } from './utils/variables.js';
-import { initScroller } from './components/scroller/scroller.js';
+import { initScroller } from './components/scroller.js';
 import { toggleMenu } from './utils/toggleMenu.js';
 
 const { burgerBtn, prevBtn, nextBtn } = getVariables();
