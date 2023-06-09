@@ -93,12 +93,14 @@ class Scroller extends HTMLElement {
   };
 
   updateItems = () => {
+    const GAP = 40;
     // if the position is less than the height of the first item return the first item
     if (this.position < this.parentHeight) return;
 
     // if the position is greater than the height of the original items
-    this.position -= this.parentHeight;
-    this.clonedItems.push(this.clonedItems.shift());
+
+    this.position -= this.parentHeight + GAP;
+    this.clonedItems.push([...this.originalItems, ...this.clonedItems].shift());
 
     // then call the function again
     this.updateItems();
