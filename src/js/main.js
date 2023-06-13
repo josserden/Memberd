@@ -1,4 +1,3 @@
-import * as Carousel from './components/carousel.js';
 import { getVariables } from './utils/variables.js';
 import { infiniteScrollerInit } from './components/infinite-scroller.js';
 
