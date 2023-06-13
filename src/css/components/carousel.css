@@ -1,19 +1,55 @@
+.carousel-wrapper {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  max-width: calc(var(--max-width-container) + 160px);
+
+  margin: 0 auto;
+}
+
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+  position: absolute;
+  z-index: 1;
+
+  top: 0;
+  bottom: 0;
+
+  width: 80px;
+
+  content: '';
+
+  background: linear-gradient(
+    to right,
+    rgb(0 0 0 / 3%) 9.31%,
+    rgba(0 0 0/ 47.5%) 25.16%,
+    #000 45.92%
+  );
+}
+
+.carousel-wrapper::before {
+  left: 0;
+
+  transform: rotate(180deg);
+}
+
+.carousel-wrapper::after {
+  right: 0;
+}
+
 .carousel-container {
   position: relative;
 
   display: flex;
-
-  width: 100%;
-  max-width: 1280px;
-
-  margin: 0 auto;
   gap: 24px;
 }
 
 .carousel-item {
   flex-shrink: 0;
 
-  width: calc(100% / 1.25);
+  width: calc(100% / 1.25)
 }
 
 /* Media */

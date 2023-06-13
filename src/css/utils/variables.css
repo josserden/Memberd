@@ -11,4 +11,5 @@
   --opacity-hover: 0.75;
   --z-index-low: 10;
   --z-index-hight: 100;
+  --max-width-container: 1224px;
 }

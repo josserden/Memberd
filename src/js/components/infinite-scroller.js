@@ -1,18 +1,4 @@
-const ORIENTATION = {
-  HORIZONTAL: 'horizontal',
-  VERTICAL: 'vertical',
-};
-const DIRECTION = {
-  LEFT: 'left',
-  RIGHT: 'right',
-  UP: 'up',
-  DOWN: 'down',
-};
-const DEFAULT_VALUES = {
-  SIZE_IN_PX: 100,
-  TIME_IN_MS: 1000,
-  POSITION: 0,
-};
+import { DEFAULT_VALUES, DIRECTION, ORIENTATION } from '../utils/constants.js';
 
 class InfiniteScroller extends HTMLElement {
   constructor() {
@@ -37,8 +23,6 @@ class InfiniteScroller extends HTMLElement {
   connectedCallback() {
     this.runScroller();
     this.moveItems();
-
-    console.log(document.querySelector('.hero').offsetHeight);
   }
 
   runScroller() {
@@ -56,10 +40,12 @@ class InfiniteScroller extends HTMLElement {
         this.orientation === ORIENTATION.HORIZONTAL
           ? this.children[0].offsetWidth
           : this.children[0].offsetHeight;
+
       const currentPosition =
         this.orientation === ORIENTATION.HORIZONTAL
           ? Math.round(this.position - itemSize)
           : Math.round(this.position - verticalGap / 2);
+
       const viewportSize =
         this.orientation === ORIENTATION.HORIZONTAL
           ? this.offsetWidth
@@ -91,16 +77,6 @@ class InfiniteScroller extends HTMLElement {
         this.appendChild(cloneItem);
       });
     }
-
-    if (
-      this.direction === DIRECTION.RIGHT ||
-      this.direction === DIRECTION.DOWN
-    ) {
-      this.cloneItems.forEach(cloneItem => {
-        this.galleryItems.push(cloneItem);
-        this.appendChild(cloneItem);
-      });
-    }
   }
 
   startDirection() {
@@ -108,10 +84,6 @@ class InfiniteScroller extends HTMLElement {
       switch (this.direction) {
         case DIRECTION.LEFT:
           this.style.transform = `translateX(${-this.position}px)`;
-          break;
-
-        case DIRECTION.RIGHT:
-          this.style.transform = `translateX(${this.position}px)`;
           break;
 
         default:
@@ -123,10 +95,6 @@ class InfiniteScroller extends HTMLElement {
       switch (this.direction) {
         case DIRECTION.UP:
           this.style.transform = `translateY(${-this.position}px)`;
-          break;
-
-        case DIRECTION.DOWN:
-          this.style.transform = `translateY(${this.position}px)`;
           break;
 
         default:
