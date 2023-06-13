@@ -1,13 +1,14 @@
 .carousel-container {
   position: relative;
 
+  display: flex;
+
   overflow: hidden;
-  max-width: 1280px;
+
   width: 100%;
+  max-width: 1280px;
 
   margin: 0 auto;
-
-  display: flex;
   gap: 24px;
 }
 

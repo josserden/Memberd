@@ -1,4 +1,6 @@
 .section-showcase {
+  overflow: hidden;
+
   padding-top: 0;
 
   background-image: linear-gradient(
@@ -11,8 +13,6 @@
   background-repeat: no-repeat;
   background-position: top -100px center;
   background-size: contain;
-
-  overflow: hidden;
 }
 
 .showcase-container {
