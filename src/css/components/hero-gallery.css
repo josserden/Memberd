@@ -31,6 +31,3 @@
   object-fit: cover;
 }
 
-.gallery-item-row-1:nth-child(2) {
-  opacity: 0.3;
-}

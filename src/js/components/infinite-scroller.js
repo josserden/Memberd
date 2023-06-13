@@ -37,6 +37,8 @@ class InfiniteScroller extends HTMLElement {
   connectedCallback() {
     this.runScroller();
     this.moveItems();
+
+    console.log(document.querySelector('.hero').offsetHeight);
   }
 
   runScroller() {
@@ -48,6 +50,25 @@ class InfiniteScroller extends HTMLElement {
       const timestamp = performance.now();
       const elapsedTime = timestamp - this.startTime;
       this.position = this.speed * elapsedTime;
+
+      const verticalGap = 45;
+      const itemSize =
+        this.orientation === ORIENTATION.HORIZONTAL
+          ? this.children[0].offsetWidth
+          : this.children[0].offsetHeight;
+      const currentPosition =
+        this.orientation === ORIENTATION.HORIZONTAL
+          ? Math.round(this.position - itemSize)
+          : Math.round(this.position - verticalGap / 2);
+      const viewportSize =
+        this.orientation === ORIENTATION.HORIZONTAL
+          ? this.offsetWidth
+          : this.offsetHeight / 2;
+
+      if (currentPosition >= viewportSize) {
+        this.position = DEFAULT_VALUES.POSITION;
+        this.startTime = timestamp;
+      }
 
       this.startDirection();
 
@@ -76,31 +97,41 @@ class InfiniteScroller extends HTMLElement {
       this.direction === DIRECTION.DOWN
     ) {
       this.cloneItems.forEach(cloneItem => {
-        this.insertBefore(cloneItem, this.galleryItems[0]);
+        this.galleryItems.push(cloneItem);
+        this.appendChild(cloneItem);
       });
     }
   }
 
   startDirection() {
-    switch (this.direction) {
-      case DIRECTION.LEFT:
-        this.style.transform = `translateX(${-this.position}px)`;
-        break;
+    if (this.orientation === ORIENTATION.HORIZONTAL) {
+      switch (this.direction) {
+        case DIRECTION.LEFT:
+          this.style.transform = `translateX(${-this.position}px)`;
+          break;
 
-      case DIRECTION.RIGHT:
-        this.style.transform = `translateX(${this.position}px)`;
-        break;
+        case DIRECTION.RIGHT:
+          this.style.transform = `translateX(${this.position}px)`;
+          break;
 
-      case DIRECTION.UP:
-        this.style.transform = `translateY(${-this.position}px)`;
-        break;
+        default:
+          break;
+      }
+    }
 
-      case DIRECTION.DOWN:
-        this.style.transform = `translateY(${this.position}px)`;
-        break;
+    if (this.orientation === ORIENTATION.VERTICAL) {
+      switch (this.direction) {
+        case DIRECTION.UP:
+          this.style.transform = `translateY(${-this.position}px)`;
+          break;
 
-      default:
-        break;
+        case DIRECTION.DOWN:
+          this.style.transform = `translateY(${this.position}px)`;
+          break;
+
+        default:
+          break;
+      }
     }
   }
 }
