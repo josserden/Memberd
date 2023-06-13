@@ -1,17 +1,12 @@
-.hero-scroller {
+.hero-gallery {
   position: absolute;
 
   z-index: 0;
-  top: -300px;
+  top: 0;
   right: 0;
 }
 
-.hero-scroller:nth-child(2) {
-  top: -100px;
-  right: 300px;
-}
-
-.hero-gallery {
+.hero-scroller {
   display: flex;
   gap: 45px;
 }
@@ -39,13 +34,3 @@
 .gallery-item-row-1:nth-child(2) {
   opacity: 0.3;
 }
-
-.gallery-column:nth-child(1) {
-  transform: translateY(-294px);
-}
-
-.gallery-column:nth-child(2) {
-  transform: translateY(-18px);
-}
-
-/* } */
